@@ -141,6 +141,10 @@
   <ItemGroup>
     <ClCompile Include="linkedList.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Downloads\linkedText.txt" />
+    <Text Include="linkedText.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

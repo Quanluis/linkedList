@@ -3,8 +3,21 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std; 
+
+class node {
+
+    private: 
+
+        string value;
+        node  *next;
+        friend class linkedList;
+
+    public:
+
+};
 
 
 class linkedList {
@@ -12,6 +25,8 @@ class linkedList {
     //variables 
 
     private: 
+
+        node *head;
 
         void file();
         void intro();
@@ -34,7 +49,7 @@ void linkedList::file() {
 
     ifstream inputFile;
 
-    inputFile.open("linkedText.txt");
+  //   inputFile.open("linkedText.txt");
 
     if (!inputFile) {
         cout << "File not found try again" << endl;
@@ -44,7 +59,23 @@ void linkedList::file() {
     else {
         cout << "File has been found" << endl;
 
+        string line;
 
+        int x = 0;
+
+        const char file[] = "linkedText.txt";
+
+        ifstream inputFile("linkedText.txt");
+
+        if (inputFile.is_open()) {
+  
+            while (getline(inputFile, line)) {
+                cout << line << endl;
+                x++;
+           }
+            inputFile.close();
+
+       }
 
     }
 
@@ -58,13 +89,11 @@ void linkedList::driver() {
 }
 
 int main()
-{
+{ 
 
     linkedList run;
-
     run.driver();
 
-    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
