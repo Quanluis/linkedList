@@ -30,6 +30,7 @@ class linkedList {
 
         void file();
         void intro();
+        void add();
 
     public: 
 
@@ -60,7 +61,7 @@ void linkedList::file() {
         cout << "File has been found" << endl;
 
         string line;
-
+        
         int x = 0;
 
         const char file[] = "linkedText.txt";
@@ -72,12 +73,23 @@ void linkedList::file() {
             while (getline(inputFile, line)) {
                 cout << line << endl;
                 x++;
+
+                
            }
             inputFile.close();
+
+            cout << line[1] << endl;
+
 
        }
 
     }
+
+}
+
+void linkedList::add(string x) {
+
+    head = new node(x, head)
 
 }
 
