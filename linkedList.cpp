@@ -7,6 +7,8 @@
 
 using namespace std; 
 
+// Node for list Item
+
 class node {
 
     private: 
@@ -16,9 +18,27 @@ class node {
         friend class linkedList;
 
     public:
+        
+        node(string, node *);
 
 };
 
+class nodeReversed {
+    
+    private:
+
+        string valueReveresed;
+        node *nextReversed;
+
+
+
+    public: 
+     //   nodeReveresed(string, nodeReversed *);
+
+
+};
+
+// Linked list itself
 
 class linkedList {
 
@@ -30,15 +50,32 @@ class linkedList {
 
         void file();
         void intro();
-        void add();
+        void print();
+        
 
     public: 
 
+        void add(string);
         void driver();
+        linkedList();
+        ~linkedList();
 
 };
 
+// linkedList constructor
+
+linkedList::linkedList() {
+    head = NULL;
+}
+
+
+
 //methods
+
+node::node(string line, node* p) { 
+    value = line;
+    next = p; 
+}
 
 void linkedList::intro() {
 
@@ -64,22 +101,20 @@ void linkedList::file() {
         
         int x = 0;
 
-        const char file[] = "linkedText.txt";
+        // const char file[] = "linkedText.txt";
 
         ifstream inputFile("linkedText.txt");
 
         if (inputFile.is_open()) {
   
             while (getline(inputFile, line)) {
-                cout << line << endl;
-                x++;
+              //  cout << line << endl;
+              //  x++;
 
+              add(line);
                 
            }
             inputFile.close();
-
-            cout << line[1] << endl;
-
 
        }
 
@@ -87,9 +122,23 @@ void linkedList::file() {
 
 }
 
-void linkedList::add(string x) {
+// adds a given value to the list
+void linkedList::add(string line) {
 
-    head = new node(x, head)
+    head = new node(line, head);
+
+}
+
+void linkedList::print() {
+
+    node *p = head;
+
+    while (p != NULL) {
+        cout << p->value << " ";
+        p = p->next;
+    }
+
+    cout << endl;
 
 }
 
@@ -97,6 +146,19 @@ void linkedList::driver() {
 
     intro();
     file();
+    print();
+
+}
+
+// linkedList Destructor
+
+linkedList::~linkedList() {
+
+    while (head != 0) {
+        node *p = head;
+        head = head->next;
+        delete p;
+    }
 
 }
 
@@ -104,7 +166,12 @@ int main()
 { 
 
     linkedList run;
+
     run.driver();
+
+    system("pause");
+
+    return 0;
 
 }
 
