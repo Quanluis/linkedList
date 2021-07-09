@@ -7,7 +7,7 @@
 
 using namespace std; 
 
-// Node for list Item
+// Node for list ItemS
 
 class node {
 
@@ -20,21 +20,6 @@ class node {
     public:
         
         node(string, node *);
-
-};
-
-class nodeReversed {
-    
-    private:
-
-        string valueReveresed;
-        node *nextReversed;
-
-
-
-    public: 
-     //   nodeReveresed(string, nodeReversed *);
-
 
 };
 
@@ -51,11 +36,11 @@ class linkedList {
         void file();
         void intro();
         void print();
+        void printReveresed();
+        void add(string);
         
-
     public: 
 
-        void add(string);
         void driver();
         linkedList();
         ~linkedList();
@@ -68,26 +53,28 @@ linkedList::linkedList() {
     head = NULL;
 }
 
+// METHODS 
 
-
-//methods
+// node decleration
 
 node::node(string line, node* p) { 
     value = line;
     next = p; 
 }
 
+// Basic program intro function
+
 void linkedList::intro() {
 
-    cout << "This program reads a file with characters and put it into a linked object." << endl;
+    cout << "This program reads a file with characters and puts it into a linked object." << endl;
 
 }
+
+// File intake function
 
 void linkedList::file() {
 
     ifstream inputFile;
-
-  //   inputFile.open("linkedText.txt");
 
     if (!inputFile) {
         cout << "File not found try again" << endl;
@@ -101,15 +88,11 @@ void linkedList::file() {
         
         int x = 0;
 
-        // const char file[] = "linkedText.txt";
-
         ifstream inputFile("linkedText.txt");
 
         if (inputFile.is_open()) {
   
             while (getline(inputFile, line)) {
-              //  cout << line << endl;
-              //  x++;
 
               add(line);
                 
@@ -123,11 +106,14 @@ void linkedList::file() {
 }
 
 // adds a given value to the list
+
 void linkedList::add(string line) {
 
     head = new node(line, head);
 
 }
+
+// Prints the first linkedList
 
 void linkedList::print() {
 
@@ -142,19 +128,55 @@ void linkedList::print() {
 
 }
 
+// Prints the reveresed linkedList
+
+void linkedList::printReveresed() {
+
+    node *prev = NULL;
+    node *next = NULL;
+
+    node *p = head;
+
+    int i = 0;
+
+    while (head != NULL) {
+        
+        prev = p->next;
+        p->next = prev;
+        next = p;
+        p = prev;
+        
+        for (int x = 9; x >= 0; x--) {
+
+            cout << head->value[x];
+        }
+
+        head = head->next;
+    }
+
+    cout << endl;
+
+    head = prev;
+
+}
+
+// Program Driver
+
 void linkedList::driver() {
 
     intro();
     file();
     print();
+    printReveresed();
 
 }
 
-// linkedList Destructor
+// Deconstructor
 
 linkedList::~linkedList() {
 
     while (head != 0) {
+
         node *p = head;
         head = head->next;
         delete p;
